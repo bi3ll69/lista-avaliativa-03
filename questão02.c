@@ -19,5 +19,5 @@ int main() {
         printf("Montante ao fim do mes %d: R$ %.2f\n", i, montante);
     }
 
-    return 0;
+    return 0;
 };
