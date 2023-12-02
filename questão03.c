@@ -9,10 +9,6 @@ int main() {
     scanf("%s", placa);
     scanf("%s", dia_semana);
 
-    //for (int i = 0; i < strlen(dia_semana); i++) {
-   //     dia_semana[i] = toupper(dia_semana[i]);
-   // }
-
     if ((strlen(placa) == 8 && placa[3] == '-' && isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) && isdigit(placa[4]) && isdigit(placa[5]) && isdigit(placa[6]) && isdigit(placa[7])) ||
         (strlen(placa) == 7 && isalpha(placa[0]) && isalpha(placa[1]) && isalpha(placa[2]) && isdigit(placa[3]) && isalpha(placa[4]) && isdigit(placa[5]) && isdigit(placa[6]))) {
 

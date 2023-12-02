@@ -1,27 +1,40 @@
 #include <stdio.h>
 #include <string.h>
 
+#define MAX_ROMAN_LENGTH 13
+#define NUM_BITS 12
+
+enum RomanValues {
+    I = 1,
+    V = 5,
+    X = 10,
+    L = 50,
+    C = 100,
+    D = 500,
+    M = 1000,
+};
+
 int valorRomano(char c) {
     switch (c) {
-        case 'I': return 1;
-        case 'V': return 5;
-        case 'X': return 10;
-        case 'L': return 50;
-        case 'C': return 100;
-        case 'D': return 500;
-        case 'M': return 1000;
+        case 'I': return I;
+        case 'V': return V;
+        case 'X': return X;
+        case 'L': return L;
+        case 'C': return C;
+        case 'D': return D;
+        case 'M': return M;
         default: return 0;
     }
 }
 
-int romanoParaDecimal(char *numRo) {
+int romanoParaDecimal(const char *numRo) {
     int resultado = 0;
-    int i;
+    int len = strlen(numRo);
 
-    for (i = 0; i < strlen(numRo); i++) {
+    for (int i = 0; i < len; i++) {
         int valorAtual = valorRomano(numRo[i]);
-        int valorProximo = (i < strlen(numRo) - 1) ? valorRomano(numRo[i + 1]) : 0;
-        
+        int valorProximo = (i < len - 1) ? valorRomano(numRo[i + 1]) : 0;
+
         if (valorAtual < valorProximo) {
             resultado -= valorAtual;
         } else {
@@ -35,21 +48,24 @@ int romanoParaDecimal(char *numRo) {
 void imprimirBinario(int decimal) {
     printf(" na base 2: ");
     int flag = 0;
-    for (int i = 11; i >= 0; i--) {
+
+    for (int i = NUM_BITS; i >= 0; i--) {
         int bit = (decimal >> i) & 1;
         if (bit == 1 || flag == 1) {
             printf("%d", bit);
             flag = 1;
         }
     }
+
     if (flag == 0) {
         printf("0");
     }
+
     printf("\n");
 }
 
 int main() {
-    char numRo[13];
+    char numRo[MAX_ROMAN_LENGTH];
     scanf("%s", numRo);
 
     int decimal = romanoParaDecimal(numRo);
